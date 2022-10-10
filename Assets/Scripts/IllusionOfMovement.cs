@@ -34,7 +34,7 @@ public class IllusionOfMovement : MonoBehaviour
        
         foreach ((int i, GameObject env) in buffer)
         {
-            env.transform.Translate(startPositions[i + 1]);
+            env.transform.position = startPositions[i + 1];
         }
 
         zBound = startPositions[0].z;
@@ -46,13 +46,14 @@ public class IllusionOfMovement : MonoBehaviour
         if (GameObject.Find("Game Manager").GetComponent<GameManager>().gameIsRunning)
         {
             transform.Translate(Vector3.back * Time.deltaTime * speed);
-            foreach ((int i, GameObject env) in buffer)
+
+            if (buffer[0].Item2.transform.position.z < zBound - zSize)
             {
-                if (env.transform.position.z < zBound)
+                foreach ((int i, GameObject env) in buffer)
                 {
-                    env.transform.position = startPositions[bufferSize - 1];
+                    env.transform.position = startPositions[i + 1];
                 }
-            }
+            }            
         }        
     }
 }
