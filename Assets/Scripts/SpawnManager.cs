@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
     private float xBound = 5.5f;
 
     private float nextPeriod = 0.0f;
-    private float period = 0.1f;
+    private float period = 0.3f;
 
     // Start is called before the first frame update
     void Start()
